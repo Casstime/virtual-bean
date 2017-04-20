@@ -16,15 +16,15 @@ Page({
       {id: '12', nickname: 'e'},
       {id: '13', nickname: 'f'}
     ],
-    plain: false
+    plain: false,
+    windowHeight: 0
   },
   onLoad:function(options){
     // 页面初始化 options为页面跳转所带来的参数
     var self = this;
     wx.getSystemInfo({
       success: function (res) {
-        console.log(res);
-        self.windowHeihgt = res.windowHeight;
+        self.setData({windowHeight: res.windowHeight});
       }
     });
   },
