@@ -1,10 +1,11 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/logs/index"
+    "pages/statistic/index",
+    "pages/my/index"
   ],
   "window": {
-    "navigationBarTitleText": "Virtual-Bean"
+    "navigationBarTitleText": "虚拟豆"
   },
   "tabBar": {
     "list": [{

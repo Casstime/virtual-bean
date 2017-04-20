@@ -1,1 +1,19 @@
 /* pages/index/index.wxss */
+#green {
+    height: 50px;
+    background-color: green;
+}
+.item {
+    padding: 0 20px;
+    height: 50px;
+    border-bottom: solid 1px #dddddd;
+}
+.item .name {
+    display: inline-block;
+    line-height: 50px;
+}
+.item button {
+    display: inline-block;
+    float: right;
+    margin-top: 10px;
+}
