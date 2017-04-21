@@ -1,2 +1,9 @@
 <!--pages/my/index.wxml-->
-<text>pages/my/index.wxml</text>
+<view>
+  <view class="header">
+    <view class="avatar-container">
+      <image class="avatar" src="{{userInfo.avatarUrl}}" mode="scaleToFill"/>
+    </view>
+  </view>
+  
+</view>
