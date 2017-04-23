@@ -1,0 +1,9 @@
+/* pages/create_group/index.wxss */
+input {
+    padding: 0 20px;
+    height: 50px;
+    border: solid 1px #eee;
+}
+button {
+    margin: 20px 20px 0;
+}

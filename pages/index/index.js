@@ -40,7 +40,16 @@ Page({
   onUnload:function(){
     // 页面关闭
   },
-  onSendBean: function () {
-    console.log('send bean');
+  scroll: function () {
+
+  },
+  onSendBean: function (e) {
+    var data = e.currentTarget.dataset;
+    var id = data.id;
+    var nickname = data.nickname;
+    console.log('send bean', id);
+    wx.navigateTo({
+      url: '../present/index?id=' + id + '&nickname=' + nickname
+    });
   }
 })

@@ -2,7 +2,12 @@
   "pages": [
     "pages/index/index",
     "pages/statistic/index",
-    "pages/my/index"
+    "pages/my/index",
+    "pages/present/index",
+    "pages/group_list/index",
+    "pages/create_group/index",
+    "pages/search_group/index",
+    "pages/group/index"
   ],
   "window": {
     "navigationBarTitleText": "虚拟豆"

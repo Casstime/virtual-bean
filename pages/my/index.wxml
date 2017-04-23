@@ -5,5 +5,13 @@
       <image class="avatar" src="{{userInfo.avatarUrl}}" mode="scaleToFill"/>
     </view>
   </view>
-  
+  <view class="item-bar" bindtap="toMyGroups">
+    <text>我的群组</text>
+  </view>
+  <view class="item-bar" bindtap="toCreateGroup">
+    <text>创建群组</text>
+  </view>
+  <view class="item-bar" bindtap="toSearchGroup">
+    <text>搜索群组</text>
+  </view>
 </view>

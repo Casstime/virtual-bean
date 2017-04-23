@@ -21,7 +21,46 @@ Page({
   onUnload:function(){
     // 页面关闭
   },
-  onSendBean: function () {
-    console.log('send bean');
+  toMyGroups: function () {
+    wx.navigateTo({
+      url: '../group_list/index',
+      success: function(res){
+        // success
+      },
+      fail: function() {
+        // fail
+      },
+      complete: function() {
+        // complete
+      }
+    });
+  },
+  toCreateGroup: function () {
+    wx.navigateTo({
+      url: '../create_group/index',
+      success: function(res){
+        // success
+      },
+      fail: function() {
+        // fail
+      },
+      complete: function() {
+        // complete
+      }
+    });
+  },
+  toSearchGroup: function () {
+    wx.navigateTo({
+      url: '../search_group/index',
+      success: function(res){
+        // success
+      },
+      fail: function() {
+        // fail
+      },
+      complete: function() {
+        // complete
+      }
+    });
   }
 })

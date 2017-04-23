@@ -1,0 +1,7 @@
+<!--pages/group_list/index.wxml-->
+<scroll-view scroll-y="true" style="height: {{windowHeight}}px;">
+  <view class="group-item" data-id="{{item.id}}" wx:for="{{groups}}" wx:for-item="item" wx:key="{{item.id}}" bindtap="toGroup">
+    <text>{{item.name}}</text>
+    <image src="../../asserts/images/arrow-right.png" mode="scaleToFill" />
+  </view>
+</scroll-view>
