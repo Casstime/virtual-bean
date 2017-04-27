@@ -1,11 +1,7 @@
 // pages/group_list/index.js
 Page({
   data:{
-    groups: [
-      {id: 1, name: '开思红包群'},
-      {id: 2, name: '开思电商群'},
-      {id: 3, name: '开思豆子群'}
-    ],
+    groups: null,
     windowHeight: 0
   },
   onLoad:function(options){
@@ -16,6 +12,25 @@ Page({
         self.setData({windowHeight: res.windowHeight});
       }
     });
+     wx.request({
+        url: 'https://www.javenleung.com/group/list?openid=' + wx.getStorageSync('openid'),
+        method: 'GET',
+        success: function (res){
+          console.log('获取群列表成功', res);
+          var groups = res.data;
+          var mapGroups = groups.map(function (group) {
+            return {id: group._id, name: group.name};
+          });
+          self.setData({groups: mapGroups});
+        },
+        fail: function (res) {
+          // fail
+          console.log('fail', res);
+        },
+        complete: function() {
+          // complete
+        }
+      });
   },
   onReady:function(){
     // 页面渲染完成

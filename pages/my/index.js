@@ -7,6 +7,7 @@ Page({
     // 页面初始化 options为页面跳转所带来的参数
     var app = getApp();
     var userInfo = app.globalData.userInfo;
+    console.log('用户信息', userInfo);
     this.setData({userInfo: userInfo});
   },
   onReady:function(){

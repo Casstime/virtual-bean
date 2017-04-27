@@ -4,6 +4,10 @@
     <view class="avatar-container">
       <image class="avatar" src="{{userInfo.avatarUrl}}" mode="scaleToFill"/>
     </view>
+    <view class="user-info">
+      <view>{{userInfo.nickName}}</view>
+      <view>{{userInfo.userId}}</view>
+    </view>
   </view>
   <view class="item-bar" bindtap="toMyGroups">
     <text>我的群组</text>

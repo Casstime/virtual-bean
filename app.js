@@ -21,15 +21,15 @@ App({
                 js_code: response.code
               },
               method: 'POST',
-              success: function(res){
-                console.log('登录成功返回', res);
+              success: function (result) {
+                console.log('登录成功返回', result.data);
                 wx.setStorage({
-                  key: "3rd_session",
-                  data: res.sessionId,
-                  success: function() {
+                  key: "openid",
+                  data: result.data.openid,
+                  success: function () {
                     wx.getUserInfo({
                       success: function (res) {
-                        that.globalData.userInfo = res.userInfo;
+                        that.globalData.userInfo = Object.assign({}, {userId: result.data.userId}, res.userInfo);
                         console.log(that.globalData.userInfo);
                         typeof cb == "function" && cb(that.globalData.userInfo)
                       }
