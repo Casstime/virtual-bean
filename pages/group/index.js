@@ -1,21 +1,7 @@
 // pages/group/index.js
 Page({
   data:{
-    members: [
-      {id: '1', nickname: 'a', gainCount: 10, remainCount: 20},
-      {id: '2', nickname: 'b', gainCount: 10, remainCount: 20},
-      {id: '3', nickname: 'c', gainCount: 10, remainCount: 20},
-      {id: '4', nickname: 'c', gainCount: 10, remainCount: 20},
-      {id: '5', nickname: 'c', gainCount: 10, remainCount: 20},
-      {id: '6', nickname: 'c', gainCount: 10, remainCount: 20},
-      {id: '7', nickname: 'c', gainCount: 10, remainCount: 20},
-      {id: '8', nickname: 'c', gainCount: 10, remainCount: 20},
-      {id: '9', nickname: 'c', gainCount: 10, remainCount: 20},
-      {id: '10', nickname: 'c', gainCount: 10, remainCount: 20},
-      {id: '11', nickname: 'd', gainCount: 10, remainCount: 20},
-      {id: '12', nickname: 'e', gainCount: 10, remainCount: 20},
-      {id: '13', nickname: 'f', gainCount: 10, remainCount: 20}
-    ],
+    members: [],
     windowHeight: 0
   },
   onLoad:function(options){
@@ -28,13 +14,21 @@ Page({
     });
 
     var groupId = options.id; 
-    var app = getApp();
-    var userInfo = app.globalData.userInfo;
-    var userInGroupInfo = userInfo['groups'] ? userInfo['groups'][groupId] : {};
-    var isMaster = userInGroupInfo.role === 'MASTER';
-
-    this.setData({groupId: groupId, userInfo: userInfo, isMaster: isMaster});
-    console.log(app.globalData.userInfo);
+    wx.request({
+      url: `https://www.javenleung.com/group/${groupId}`,
+      method: 'GET',
+      success: function(res){
+        console.log('获取群组信息', res);
+        self.setData({members: res.data.members});
+      },
+      fail: function() {
+        // fail
+      },
+      complete: function() {
+        // complete
+      }
+    })
+    
   },
   onReady:function(){
     // 页面渲染完成

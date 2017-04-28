@@ -1,22 +1,23 @@
 <!--pages/group/index.wxml-->
 <view>
   <scroll-view scroll-y="true" style="height: {{windowHeight}}px;">
-    <view class="member-item" data-id="{{item.id}}" wx:for="{{members}}" wx:for-item="item" wx:key="{{item.id}}">
+    <view class="member-item" data-id="{{item._id}}" wx:for="{{members}}" wx:for-item="item" wx:key="{{item._id}}">
       <text>{{item.nickname}}</text>
       <view class="right-side">
         <view class="gain-box">
           <image src="../../asserts/images/get.png" mode="scaleToFill" />
-          <text >{{item.gainCount}}</text>
+          <text >{{item.gainBeans}}</text>
         </view>
         <view class="remain-box">
           <image src="../../asserts/images/surplus.png" mode="scaleToFill" />
-          <text>{{item.remainCount}}</text></view>
+          <text>{{item.remainBeans}}</text></view>
         </view>
     </view>
+    <view>
+      <button type="primary" bindtap="onResetRemainBean">重置剩余豆子</button>
+      <button type="warn" bindtap="onResetGainBean">重置已得豆子</button>
+    </view>
   </scroll-view>
-  <view>
-    <button type="primary" bindtap="onResetRemainBean">重置剩余豆子</button>
-    <button type="warn" bindtap="onResetGainBean">重置已得豆子</button>
-  </view>
+  
 </view>
 
