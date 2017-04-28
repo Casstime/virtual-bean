@@ -2,7 +2,6 @@
 App({
   onLaunch: function () {
     //调用API从本地缓存中获取数据
-    this.getUserInfo();
   },
   getUserInfo: function (cb) {
     var that = this;
@@ -30,7 +29,7 @@ App({
                     wx.getUserInfo({
                       success: function (res) {
                         that.globalData.userInfo = Object.assign({}, {userId: result.data.userId}, res.userInfo);
-                        console.log(that.globalData.userInfo);
+                        console.log('global', that.globalData.userInfo);
                         typeof cb == "function" && cb(that.globalData.userInfo)
                       }
                     });

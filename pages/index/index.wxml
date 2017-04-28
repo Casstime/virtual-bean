@@ -1,9 +1,9 @@
 <!--pages/index/index.wxml-->
 <view>
   <scroll-view scroll-y="true" style="height: {{windowHeight}}px;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll">
-    <view class="item" wx:for="{{members}}" wx:for-item="item" wx:key="item.id">
+    <view class="item" wx:for="{{members}}" wx:for-item="item" wx:key="item._id">
       <view class="name">{{item.nickname}}</view>
-      <button type="primary" size="mini" plain="{{plain}}" data-id="{{item.id}}" data-nickname="{{item.nickname}}" bindtap="onSendBean">送豆</button>
+      <button type="primary" size="mini" plain="{{plain}}" data-id="{{item._id}}" data-nickname="{{item.nickname}}" bindtap="onSendBean">送豆</button>
     </view>
   </scroll-view>
 </view>

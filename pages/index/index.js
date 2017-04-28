@@ -1,21 +1,8 @@
 // pages/index/index.js
+var app = getApp();
 Page({
   data:{
-    members: [
-      {id: '1', nickname: 'a'},
-      {id: '2', nickname: 'b'},
-      {id: '3', nickname: 'c'},
-      {id: '4', nickname: 'c'},
-      {id: '5', nickname: 'c'},
-      {id: '6', nickname: 'c'},
-      {id: '7', nickname: 'c'},
-      {id: '8', nickname: 'c'},
-      {id: '9', nickname: 'c'},
-      {id: '10', nickname: 'c'},
-      {id: '11', nickname: 'd'},
-      {id: '12', nickname: 'e'},
-      {id: '13', nickname: 'f'}
-    ],
+    members: [],
     plain: false,
     windowHeight: 0
   },
@@ -29,20 +16,39 @@ Page({
         self.setData({windowHeight: res.windowHeight});
       }
     });
-    wx.request({
-      url: 'https://www.javenleung.com/',
-      data: {},
-      method: 'GET',
-      success: function(res){
-        // success
-      },
-      fail: function() {
-        // fail
-      },
-      complete: function() {
-        // complete
-      }
-    })
+    app.getUserInfo(function (userInfo) {
+      var openid = wx.getStorageSync('openid');
+      wx.request({
+        url: `https://www.javenleung.com/group/list?openid=${openid}`,
+        method: 'GET',
+        success: function(res){
+          console.log('用户群组', res.data);
+          var groups = res.data;
+          wx.request({
+            url: `https://www.javenleung.com/group/${groups[0]._id}`,
+            method: 'GET', 
+            success: function(response){
+              console.log('第一个群的信息', response);
+              var members = response.data.members;
+              self.setData({members});
+            },
+            fail: function() {
+              // fail
+            },
+            complete: function() {
+              // complete
+            }
+          })
+        },
+        fail: function() {
+          // fail
+        },
+        complete: function() {
+          // complete
+        }
+      });
+    });
+    
   },
   onReady:function(){
     // 页面渲染完成
