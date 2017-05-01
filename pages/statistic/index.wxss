@@ -1,1 +1,22 @@
 /* pages/logs/index.wxss */
+.item {
+    padding-top: 15px;
+}
+.time {
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+    font-family: Arial;
+}
+.reason-box {
+    width: calc(100% - 40px);
+    margin: 5px auto 0;
+    padding: 8px;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #1AAD19;
+}
+.reason-box text {
+    display: block;
+}

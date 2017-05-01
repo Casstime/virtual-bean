@@ -1,8 +1,8 @@
-/* pages/search_group/index.wxss */
+/* pages/join_group/index.wxss */
 page {
     background-color: #ececec;
 }
-.search-bar {
+.input-bar {
     display: flex;
     height: 50px;
     background-color: #fff;
@@ -14,13 +14,6 @@ input {
     border:solid 1px #eee;
     margin:auto;
 }
-.item {
-    padding: 0 20px;
-    height: 50px;
-    line-height: 50px;
-    background-color: #fff;
-}
 button {
-    float:right;
-    margin-top:10px;
+    margin: 20px 20px 0 20px;
 }

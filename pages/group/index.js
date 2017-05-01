@@ -1,6 +1,7 @@
 // pages/group/index.js
 Page({
   data:{
+    groupId: '',
     members: [],
     windowHeight: 0
   },
@@ -13,7 +14,8 @@ Page({
       }
     });
 
-    var groupId = options.id; 
+    var groupId = options.id;
+    this.setData({groupId: groupId});
     wx.request({
       url: `https://www.javenleung.com/group/${groupId}`,
       method: 'GET',
@@ -43,18 +45,64 @@ Page({
     // 页面关闭
   },
   onResetRemainBean: function () {
+    const self = this;
+    const groupId = this.data.groupId;
+    const members = this.data.members;
     wx.showModal({
       content: '是否重置所有成员剩余的豆子？',
       success: function() {
-        // todo:接口请求，重置
+        wx.request({
+          url: 'https://www.javenleung.com/group/reset/remain_beans',
+          data: {
+            groupId: groupId 
+          },
+          method: 'POST',
+          success: function(res){
+            console.log('重置剩余豆子数成功', res);
+            const resets = members.map((member) => {
+              member.remainBeans = 50;
+              return member;
+            });
+            self.setData({members: resets});
+          },
+          fail: function() {
+            // fail
+          },
+          complete: function() {
+            // complete
+          }
+        });
       }
     });
   },
   onResetGainBean: function() {
+    const self = this;
+    const groupId = this.data.groupId;
+    const members = this.data.members;
     wx.showModal({
       content: '是否重置所有成员已获得的豆子？',
       success: function() {
-        // todo:接口请求，重置
+        wx.request({
+          url: 'https://www.javenleung.com/group/reset/gain_beans',
+          data: {
+            groupId: groupId 
+          },
+          method: 'POST',
+          success: function(res){
+            console.log('重置获得豆子数成功', res);
+            const resets = members.map((member) => {
+              member.gainBeans = 0;
+              return member;
+            });
+            self.setData({members: resets});
+          },
+          fail: function() {
+            // fail
+          },
+          complete: function() {
+            // complete
+          }
+        });
       }
     });
   }

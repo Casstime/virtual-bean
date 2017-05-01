@@ -6,7 +6,6 @@
     </view>
     <view class="user-info">
       <view>{{userInfo.nickName}}</view>
-      <view>{{userInfo.userId}}</view>
     </view>
   </view>
   <view class="item-bar" bindtap="toMyGroups">

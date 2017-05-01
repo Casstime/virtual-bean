@@ -1,10 +1,10 @@
 <!--pages/search_group/index.wxml-->
 <view>
   <view class="search-bar">
-    <input type="text" placeholder="搜索群组" name="search" bindinput="onInputKw" />
+    <input type="text" placeholder="搜索群组" name="search" bindinput="onSearchGroup" />
   </view>
-  <view class="item" wx:for="{{results}}" wx:for-item="item">
+  <view class="item" wx:for="{{results}}" wx:for-item="item" wx:key="{{item._id}}">
     <text>{{item.name}}</text>
-    <button type="primary" size="mini" data-id="{{item.id}}" bindtap="onJoin">加入</button>
+    <button type="primary" size="mini" data-id="{{item._id}}" bindtap="onJoin">加入</button>
   </view>
 </view>

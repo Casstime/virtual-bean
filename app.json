@@ -5,12 +5,14 @@
     "pages/my/index",
     "pages/present/index",
     "pages/group_list/index",
+    "pages/group/index",
     "pages/create_group/index",
     "pages/search_group/index",
-    "pages/group/index"
+    "pages/join_group/index"
   ],
   "window": {
-    "navigationBarTitleText": "虚拟豆"
+    "navigationBarTitleText": "虚拟豆",
+    "backgroundColor": "#ececec"
   },
   "tabBar": {
     "list": [{

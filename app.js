@@ -28,7 +28,7 @@ App({
                   success: function () {
                     wx.getUserInfo({
                       success: function (res) {
-                        that.globalData.userInfo = Object.assign({}, {userId: result.data.userId}, res.userInfo);
+                        that.globalData.userInfo = Object.assign({}, {userId: result.data.userId, openid: result.data.openid}, res.userInfo);
                         console.log('global', that.globalData.userInfo);
                         typeof cb == "function" && cb(that.globalData.userInfo)
                       }

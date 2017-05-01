@@ -2,7 +2,8 @@
 input {
     padding: 0 20px;
     height: 50px;
-    border-bottom: solid 1px #eee;
+    background-color: #fff;
+    border-bottom: solid 1px #ddd;
 }
 button {
     margin: 20px 20px 0;

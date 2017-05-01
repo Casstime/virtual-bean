@@ -1,15 +1,11 @@
 <!--pages/present/index.wxml-->
 <view>
   <form bindsubmit="onSubmit">
-    <view class="bar count-bar">
-        <view>我要给{{nickname}}送</view>
-        <input type="number" name="count" />
-        <view>颗豆子</view>
+    <view class="count-bar">
+      <input type="number" name="count" placeholder="填写赠送{{nickname}}的豆子数" /> 
     </view>
-    <view class="bar">
-      <textarea name="reason" placeholder="送豆理由（必填）"/>
-    </view>
-    <view class="bar">
+    <textarea name="reason" placeholder="送豆理由（必填）"/>
+    <view class="btn-bar">
       <button type="primary" form-type="submit">确定</button>
     </view>
   </form>

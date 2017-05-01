@@ -1,0 +1,9 @@
+<!--pages/join_group/index.wxml-->
+<view>
+  <form bindsubmit="onJoinGroup">
+    <view class="input-bar">
+      <input type="password" placeholder="输入加群密码" name="password" />
+    </view>
+    <button type="primary" size="default" form-type="submit">确定</button>
+  </form>
+</view>

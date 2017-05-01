@@ -1,23 +1,22 @@
 /* pages/present/index.wxss */
-.bar {
-    display: flex;
-   padding: 10px 20px;
-}
 .count-bar {
-    line-height: 26px;
+   display: flex;
+   height: 50px;
 }
 input[type='number'] {
-    margin: 0 10px;
+    width: 100%;
+    height: 100%;
     padding: 0 10px;
-    width: 30px;
-    border: solid 1px #ddd;
+    border-bottom: solid 1px #ddd;
 }
 textarea {
     padding: 10px;
-    margin: auto;
+    margin-top: 20px;
     width: 100%;
-    border: solid 1px #ddd;
+    border-top: solid 1px #ddd;
+    border-bottom: solid 1px #ddd;
 }
-button {
-    width: 100%;
+.btn-bar {
+    padding: 0 20px;
+    margin-top: 20px;
 }
