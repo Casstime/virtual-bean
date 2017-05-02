@@ -76,28 +76,7 @@ Page({
   onUnload: function () {
     // 页面关闭
   },
-  refresh: function () {
-    const self = this;
-    this.setData({isRefreshing: true});
-    const app = getApp();
-    const groups = app.globalData.groups;
-    wx.request({
-      url: `https://www.javenleung.com/statistic?groupId=${groups[0]._id}&pager=1&count=10`,
-      method: 'GET',
-      success: function (res) {
-        // success
-        console.log('---refresh done-----');
-        self.setData({pager: 1, records: res.data, isRefreshing: false});
-      },
-      fail: function () {
-        // fail
-      },
-      complete: function () {
-        // complete
-      }
-    });
-  },
-  loadMore: function () {
+  onReachBottom: function () {
     console.log('加载更多');
     this.setData({isRefreshing: false, hasMore: true});
     const app = getApp();
@@ -125,8 +104,34 @@ Page({
     });
   },
   onPullDownRefresh: function () {
-    wx.stopPullDownRefresh();
-    console.log('下拉刷新。。');
+    const self = this;
+    const app = getApp();
+    const groups = app.globalData.groups;
+    const start = Date.now();
+    wx.request({
+      url: `https://www.javenleung.com/statistic?groupId=${groups[0]._id}&pager=1&count=10`,
+      method: 'GET',
+      success: function (res) {
+        // success
+        console.log('---refresh done-----');
+        const end = Date.now();
+        if (end - start > 1000) {
+          self.setData({pager: 1, records: res.data});
+          wx.stopPullDownRefresh();
+        } else {
+          setTimeout(() => {
+            self.setData({pager: 1, records: res.data});
+            wx.stopPullDownRefresh();
+          }, 1000 - (end - start));
+        }
+      },
+      fail: function () {
+        // fail
+      },
+      complete: function () {
+        // complete
+      }
+    });
   },
   scroll: function () {
 

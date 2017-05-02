@@ -33,6 +33,7 @@ Page({
               console.log('第一个群的信息', response);
               const members = response.data.members;
               self.setData({userInfo: userInfo, groupId: groupId, members: members});
+              console.log('更新首页members后', self.data.members);
             },
             fail: function() {
               // fail
