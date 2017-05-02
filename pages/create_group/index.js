@@ -1,30 +1,30 @@
 // pages/create_group/index.js
 Page({
-  data:{
+  data: {
     userInfo: null
   },
-  onLoad:function(options){
+  onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
-    var app = getApp();
-    var userInfo = app.globalData.userInfo;
+    const app = getApp();
+    const userInfo = app.globalData.userInfo;
     this.setData({userInfo: userInfo});
   },
-  onReady:function(){
+  onReady: function () {
     // 页面渲染完成
   },
-  onShow:function(){
+  onShow: function () {
     // 页面显示
   },
-  onHide:function(){
+  onHide: function () {
     // 页面隐藏
   },
-  onUnload:function(){
+  onUnload: function () {
     // 页面关闭
   },
   onFormSubmit: function (e) {
     console.log('创建群主', e.detail.value);
-    var data = e.detail.value;
-    var userInfo = this.data.userInfo;
+    const data = e.detail.value;
+    const userInfo = this.data.userInfo;
     wx.request({
       url: 'https://www.javenleung.com/group/create_group',
       data: {
@@ -34,17 +34,17 @@ Page({
         groupPwd: data.groupPwd
       },
       method: 'POST',
-      success: function (res){
+      success: function (res) {
         console.log('创建群成功', res.data);
         wx.switchTab({
           url: '../my/index',
-          success: function(res){
+          success: function (res) {
             console.log('创建群后成功跳转至我的页面');
           },
-          fail: function() {
+          fail: function () {
             // fail
           },
-          complete: function() {
+          complete: function () {
             // complete
           }
         })
@@ -53,7 +53,7 @@ Page({
         // fail
         console.log('fail', res);
       },
-      complete: function() {
+      complete: function () {
         // complete
       }
     });

@@ -20,3 +20,7 @@
 .reason-box text {
     display: block;
 }
+.waiting-icon {
+    position: relative;
+    top: -2px;
+}

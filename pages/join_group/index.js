@@ -1,29 +1,29 @@
 // pages/join_group/index.js
 Page({
-  data:{
+  data: {
     groupId: ''
   },
-  onLoad:function(options){
+  onLoad: function (options) {
     console.log('options群id', options);
     this.setData({groupId: options.groupId});
   },
-  onReady:function(){
+  onReady: function () {
     // 页面渲染完成
   },
-  onShow:function(){
+  onShow: function () {
     // 页面显示
   },
-  onHide:function(){
+  onHide: function () {
     // 页面隐藏
   },
-  onUnload:function(){
+  onUnload: function () {
     // 页面关闭
   },
   getUserInfo() {
     const app = getApp();
     return app.globalData.userInfo;
   },
-  onJoinGroup: function(e) {
+  onJoinGroup: function (e) {
     const data = e.detail.value;
     const userInfo = this.getUserInfo();
     const openid = userInfo.openid || wx.getStorageSync('openid');
@@ -38,7 +38,7 @@ Page({
         password: data.password
       },
       method: 'POST',
-      success: function(res){
+      success: function (res) {
         if (res.statusCode === 200) {
           console.log('加群成功', res);
           wx.showToast({
@@ -47,13 +47,13 @@ Page({
             success: function () {
               wx.navigateTo({
                 url: '../group_list/index',
-                success: function(res){
+                success: function (res) {
                   // success
                 },
-                fail: function() {
+                fail: function () {
 
                 },
-                complete: function() {
+                complete: function () {
                   // complete
                 }
               });
@@ -66,13 +66,13 @@ Page({
           });
         }
       },
-      fail: function() {
-         wx.showToast({
-            title: '加群失败',
-            duration: 2000
-         });
+      fail: function () {
+        wx.showToast({
+          title: '加群失败',
+          duration: 2000
+        });
       },
-      complete: function() {
+      complete: function () {
         // complete
       }
     })

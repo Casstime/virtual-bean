@@ -8,30 +8,30 @@ Page({
   },
   onLoad:function(options){
     // 页面初始化 options为页面跳转所带来的参数
-    var app = getApp();
-    var self = this;
-    var globalData = app.globalData;
+    const app = getApp();
+    const self = this;
+    const globalData = app.globalData;
     wx.getSystemInfo({
       success: function (res) {
         self.setData({windowHeight: res.windowHeight});
       }
     });
     app.getUserInfo(function (userInfo) {
-      var openid = wx.getStorageSync('openid');
+      const openid = wx.getStorageSync('openid');
       wx.request({
         url: `https://www.javenleung.com/group/list?openid=${openid}`,
         method: 'GET',
         success: function(res){
           console.log('用户群组', res.data);
-          var groups = res.data;
+          const groups = res.data;
           app.globalData = Object.assign({}, globalData, {groups: groups});
-          var groupId = groups[0]._id;
+          const groupId = groups[0]._id;
           wx.request({
             url: `https://www.javenleung.com/group/${groupId}`,
             method: 'GET', 
             success: function(response){
               console.log('第一个群的信息', response);
-              var members = response.data.members;
+              const members = response.data.members;
               self.setData({userInfo: userInfo, groupId: groupId, members: members});
             },
             fail: function() {
@@ -67,14 +67,14 @@ Page({
 
   },
   onSendBean: function (e) {
-    var data = e.currentTarget.dataset;
-    var toUserId = data.id;
-    var fromUserId = this.data.userInfo.userId;
-    var nickname = data.nickname;
-    var groupId = this.data.groupId;
+    const data = e.currentTarget.dataset;
+    const toUserId = data.id;
+    const fromUserId = this.data.userInfo.userId;
+    const nickname = data.nickname;
+    const groupId = this.data.groupId;
     console.log('to send bean, userId groupId', toUserId, groupId);
     wx.navigateTo({
       url: `../present/index?groupId=${groupId}&fromUserId=${fromUserId}&toUserId=${toUserId}&nickname=${nickname}`
     });
   }
-})
+});

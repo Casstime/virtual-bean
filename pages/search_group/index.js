@@ -1,22 +1,22 @@
 // pages/search_group/index.js
 const pageConfig = {
-  data:{
-    results:[],
+  data: {
+    results: [],
     searching: false
   },
-  onLoad:function(options){
+  onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
   },
-  onReady:function(){
+  onReady: function () {
     // 页面渲染完成
   },
-  onShow:function(){
+  onShow: function () {
     // 页面显示
   },
-  onHide:function(){
+  onHide: function () {
     // 页面隐藏
   },
-  onUnload:function(){
+  onUnload: function () {
     // 页面关闭
   },
   onSearchGroup: function (e) {
@@ -36,14 +36,14 @@ const pageConfig = {
           groupName: kw
         },
         method: 'POST',
-        success: function(res) {
+        success: function (res) {
           console.log('搜索出来的群组', res);
           self.setData({results: res.data, searching: false});
         },
-        fail: function() {
+        fail: function () {
           // fail
         },
-        complete: function() {
+        complete: function () {
           // complete
         }
       });
@@ -54,13 +54,13 @@ const pageConfig = {
     console.log('加群data===', e);
     wx.navigateTo({
       url: `../join_group/index?groupId=${data.id}`,
-      success: function(res){
+      success: function (res) {
         // success
       },
-      fail: function() {
+      fail: function () {
         // fail
       },
-      complete: function() {
+      complete: function () {
         // complete
       }
     })
