@@ -1,5 +1,7 @@
 // pages/join_group/index.js
-Page({
+const config = require('../../config');
+
+const pageConfig = {
   data: {
     groupId: ''
   },
@@ -30,7 +32,7 @@ Page({
     const nickname = userInfo.nickName;
     const groupId = this.data.groupId;
     wx.request({
-      url: 'https://www.javenleung.com/group/join_group',
+      url: `${config.origin}/group/join_group`,
       data: {
         groupId: groupId,
         openid: openid,
@@ -77,4 +79,6 @@ Page({
       }
     })
   }
-});
+};
+
+Page(pageConfig);

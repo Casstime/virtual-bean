@@ -1,5 +1,7 @@
 // pages/present/index.js
-Page({
+const config = require('../../config');
+
+const pageConfig = {
   data: {
     nickname: '',
     toUserId: '',
@@ -47,7 +49,7 @@ Page({
     } else {
       beanCount = parseInt(beanCount, 10);
       wx.request({
-        url: 'https://www.javenleung.com/statistic/create',
+        url: `${config.origin}/statistic/create`,
         data: {
           groupId: data.groupId,
           fromUserId: data.fromUserId,
@@ -79,4 +81,6 @@ Page({
       });
     }
   }
-})
+};
+
+Page(pageConfig);

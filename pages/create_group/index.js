@@ -1,5 +1,7 @@
 // pages/create_group/index.js
-Page({
+const config = require('../../config');
+
+const pageConfig = {
   data: {
     userInfo: null
   },
@@ -26,7 +28,7 @@ Page({
     const data = e.detail.value;
     const userInfo = this.data.userInfo;
     wx.request({
-      url: 'https://www.javenleung.com/group/create_group',
+      url: `${config.origin}/group/create_group`,
       data: {
         openid: wx.getStorageSync('openid'),
         nickname: userInfo.nickName,
@@ -58,4 +60,6 @@ Page({
       }
     });
   }
-});
+};
+
+Page(pageConfig);

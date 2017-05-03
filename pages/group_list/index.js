@@ -1,5 +1,7 @@
 // pages/group_list/index.js
-Page({
+const config = require('../../config');
+
+const pageConfig = {
   data: {
     groups: null,
     windowHeight: 0
@@ -12,8 +14,9 @@ Page({
         self.setData({windowHeight: res.windowHeight});
       }
     });
+    const openid = wx.getStorageSync('openid');
     wx.request({
-      url: 'https://www.javenleung.com/group/list?openid=' + wx.getStorageSync('openid'),
+      url: `${config.origin}/group/list?openid=${openid}`,
       method: 'GET',
       success: function (res) {
         console.log('获取群列表成功', res);
@@ -59,4 +62,6 @@ Page({
       }
     })
   }
-});
+};
+
+Page(pageConfig);

@@ -1,5 +1,7 @@
 // pages/logs/index.js
-Page({
+const config = require('../../config');
+
+const pageConfig = {
   data: {
     pager: 1,
     records: [],
@@ -20,12 +22,12 @@ Page({
     if (!groups.length) {
       const openid = wx.getStorageSync('openid');
       wx.request({
-        url: `https://www.javenleung.com/group/list?openid=${openid}`,
+        url: `${config.origin}/group/list?openid=${openid}`,
         method: 'GET',
         success: function (res) {
           groups = res.data;
           wx.request({
-            url: `https://www.javenleung.com/statistic?groupId=${groups[0]._id}&pager=1&count=10`,
+            url: `${config.origin}/statistic?groupId=${groups[0]._id}&pager=1&count=10`,
             method: 'GET',
             success: function (res) {
               console.log('拉取送豆记录', res);
@@ -48,7 +50,7 @@ Page({
       });
     } else {
       wx.request({
-        url: `https://www.javenleung.com/statistic?groupId=${groups[0]._id}&pager=1&count=10`,
+        url: `${config.origin}/statistic?groupId=${groups[0]._id}&pager=1&count=10`,
         method: 'GET',
         success: function (res) {
           console.log('拉取送豆记录', res);
@@ -84,9 +86,9 @@ Page({
     const self = this;
     const oldPager = this.data.pager;
     const pager = oldPager + 1;
-    console.log('加载更多请求', `https://www.javenleung.com/statistic?groupId=${groups[0]._id}&pager=${pager}&count=10`);
+    console.log('加载更多请求', `${config.origin}/statistic?groupId=${groups[0]._id}&pager=${pager}&count=10`);
     wx.request({
-      url: `https://www.javenleung.com/statistic?groupId=${groups[0]._id}&pager=${pager}&count=10`,
+      url: `${config.origin}/statistic?groupId=${groups[0]._id}&pager=${pager}&count=10`,
       method: 'GET',
       success: function (res) {
         // success
@@ -109,7 +111,7 @@ Page({
     const groups = app.globalData.groups;
     const start = Date.now();
     wx.request({
-      url: `https://www.javenleung.com/statistic?groupId=${groups[0]._id}&pager=1&count=10`,
+      url: `${config.origin}/statistic?groupId=${groups[0]._id}&pager=1&count=10`,
       method: 'GET',
       success: function (res) {
         // success
@@ -136,4 +138,6 @@ Page({
   scroll: function () {
 
   }
-});
+};
+
+Page(pageConfig);

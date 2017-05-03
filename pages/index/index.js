@@ -1,5 +1,7 @@
 // pages/index/index.js
-Page({
+const config = require('../../config');
+
+const pageConfig = {
   data:{
     userInfo: {},
     groupId: '',
@@ -19,7 +21,7 @@ Page({
     app.getUserInfo(function (userInfo) {
       const openid = wx.getStorageSync('openid');
       wx.request({
-        url: `https://www.javenleung.com/group/list?openid=${openid}`,
+        url: `${config.origin}/group/list?openid=${openid}`,
         method: 'GET',
         success: function(res){
           console.log('用户群组', res.data);
@@ -27,8 +29,8 @@ Page({
           app.globalData = Object.assign({}, globalData, {groups: groups});
           const groupId = groups[0]._id;
           wx.request({
-            url: `https://www.javenleung.com/group/${groupId}`,
-            method: 'GET', 
+            url: `${config.origin}/group/${groupId}`,
+            method: 'GET',
             success: function(response){
               console.log('第一个群的信息', response);
               const members = response.data.members;
@@ -78,4 +80,6 @@ Page({
       url: `../present/index?groupId=${groupId}&fromUserId=${fromUserId}&toUserId=${toUserId}&nickname=${nickname}`
     });
   }
-});
+};
+
+Page(pageConfig);

@@ -1,4 +1,6 @@
 // pages/search_group/index.js
+const config = require('../../config');
+
 const pageConfig = {
   data: {
     results: [],
@@ -31,7 +33,7 @@ const pageConfig = {
     if (!searching) {
       this.setData({searching: true});
       wx.request({
-        url: 'https://www.javenleung.com/group/search_group',
+        url: `${config.origin}/group/search_group`,
         data: {
           groupName: kw
         },

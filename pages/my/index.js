@@ -1,5 +1,7 @@
 // pages/my/index.js
-Page({
+const config = require('../../config');
+
+const pageConfig = {
   data: {
     userInfo: {}
   },
@@ -64,4 +66,6 @@ Page({
       }
     });
   }
-});
+};
+
+Page(pageConfig);

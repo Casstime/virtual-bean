@@ -1,5 +1,7 @@
 // pages/group/index.js
-Page({
+const config = require('../../config');
+
+const pageConfig = {
   data: {
     groupId: '',
     members: [],
@@ -17,7 +19,7 @@ Page({
     const groupId = options.id;
     this.setData({groupId: groupId});
     wx.request({
-      url: `https://www.javenleung.com/group/${groupId}`,
+      url: `${config.origin}/group/${groupId}`,
       method: 'GET',
       success: function (res) {
         console.log('获取群组信息', res);
@@ -52,7 +54,7 @@ Page({
       content: '是否重置所有成员剩余的豆子？',
       success: function () {
         wx.request({
-          url: 'https://www.javenleung.com/group/reset/remain_beans',
+          url: `${config.origin}/group/reset/remain_beans`,
           data: {
             groupId: groupId
           },
@@ -83,7 +85,7 @@ Page({
       content: '是否重置所有成员已获得的豆子？',
       success: function () {
         wx.request({
-          url: 'https://www.javenleung.com/group/reset/gain_beans',
+          url: `${config.origin}/group/reset/gain_beans`,
           data: {
             groupId: groupId
           },
@@ -106,4 +108,6 @@ Page({
       }
     });
   }
-});
+};
+
+Page(pageConfig);
