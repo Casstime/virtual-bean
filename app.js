@@ -10,7 +10,6 @@ App({
     } else {
       //调用登录接口
       wx.login({
-        withCredentials: true,
         success: function (response) {
           console.log('返回的code', response.code);
           if (response.code) {
@@ -27,7 +26,9 @@ App({
                   data: result.data.openid,
                   success: function () {
                     wx.getUserInfo({
+                      withCredentials: true,
                       success: function (res) {
+                        console.log('向微信请求用户信息返回', res);
                         that.globalData.userInfo = Object.assign({}, {userId: result.data.userId, openid: result.data.openid}, res.userInfo);
                         console.log('global', that.globalData.userInfo);
                         typeof cb == "function" && cb(that.globalData.userInfo)

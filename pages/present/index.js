@@ -59,18 +59,27 @@ const pageConfig = {
         },
         method: 'POST',
         success: function (res) {
-          wx.switchTab({
-            url: '../statistic/index',
-            success: function (res) {
-              // success
-            },
-            fail: function () {
-              // fail
-            },
-            complete: function () {
-              // complete
-            }
-          })
+          console.log('---赠送豆子完成---', res);
+          if (res.statusCode === 200) {
+            wx.switchTab({
+              url: '../statistic/index',
+              success: function (res) {
+                // success
+              },
+              fail: function () {
+                // fail
+              },
+              complete: function () {
+                // complete
+              }
+            });
+          } else if (res.statusCode === 400) {
+            wx.showToast({
+              title: '剩余的豆子不足',
+              duration: 2000
+            });
+          }
+
         },
         fail: function () {
           // fail

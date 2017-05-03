@@ -12,8 +12,8 @@
   ],
   "window": {
     "navigationBarTitleText": "虚拟豆",
-    "enablePullDownRefresh": true,
-    "backgroundColor": "#ececec"
+    "backgroundColor": "#ececec",
+    "enablePullDownRefresh": true
   },
   "tabBar": {
     "list": [{
