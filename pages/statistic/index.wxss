@@ -15,7 +15,7 @@
     border-radius: 8px;
     font-size: 16px;
     color: #fff;
-    background-color: #1AAD19;
+    background-color: #1aad19;
 }
 .reason-box text {
     display: block;

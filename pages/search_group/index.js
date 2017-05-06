@@ -8,6 +8,9 @@ const pageConfig = {
   },
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
+    const app = getApp();
+    const userInfo = app.globalData.userInfo;
+    this.setData({userInfo});
   },
   onReady: function () {
     // 页面渲染完成
@@ -20,6 +23,10 @@ const pageConfig = {
   },
   onUnload: function () {
     // 页面关闭
+  },
+  isInGroup: function (group) {
+
+    return group.members.find((item) => item.userId === userId);
   },
   onSearchGroup: function (e) {
     const kw = e.detail.value.trim();
@@ -40,7 +47,12 @@ const pageConfig = {
         method: 'POST',
         success: function (res) {
           console.log('搜索出来的群组', res);
-          self.setData({results: res.data, searching: false});
+          const groups = res.data;
+          const results = groups.map((group) => {
+            group.hasJoined = group.members.find((member) => member.userId === self.data.userInfo.userId);
+            return group;
+          });
+          self.setData({results, searching: false});
         },
         fail: function () {
           // fail
