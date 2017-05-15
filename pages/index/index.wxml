@@ -1,9 +1,12 @@
 <!--pages/index/index.wxml-->
 <view>
-  <scroll-view scroll-y="true" style="height: {{windowHeight}}px;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll">
+  <view class="tip" wx:if="{{!groupId}}">
+    <text>您还没加入任何群组</text>
+  </view>
+  <view style="height: {{windowHeight}}px;overflow: scroll;" bindscrolltoupper="upper">
     <view class="item" wx:for="{{members}}" wx:for-item="item" wx:key="item._id">
       <view class="name">{{item.nickname}}</view>
       <button type="primary" size="mini" wx:if="{{userInfo.userId !== item.userId}}" data-id="{{item._id}}" data-nickname="{{item.nickname}}" bindtap="onSendBean">送豆</button>
     </view>
-  </scroll-view>
+  </view>
 </view>

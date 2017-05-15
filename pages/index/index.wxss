@@ -1,7 +1,8 @@
 /* pages/index/index.wxss */
-#green {
-    height: 50px;
-    background-color: green;
+.tip {
+    padding-top: 30px;
+    text-align: center;
+    color: #666;
 }
 .item {
     padding: 0 20px;

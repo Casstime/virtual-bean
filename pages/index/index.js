@@ -4,7 +4,7 @@ const config = require('../../config');
 const pageConfig = {
   data:{
     userInfo: {},
-    groupId: '',
+    groupId: 'id',
     members: [],
     windowHeight: 0
   },
@@ -19,7 +19,8 @@ const pageConfig = {
       }
     });
     app.getUserInfo(function (userInfo) {
-      const openid = wx.getStorageSync('openid');
+      self.setData({userInfo});
+      const openid = userInfo.openid || wx.getStorageSync('openid');
       wx.request({
         url: `${config.origin}/group/list?openid=${openid}`,
         method: 'GET',
@@ -27,23 +28,25 @@ const pageConfig = {
           console.log('用户群组', res.data);
           const groups = res.data;
           app.globalData = Object.assign({}, globalData, {groups: groups});
-          const groupId = groups[0]._id;
-          wx.request({
-            url: `${config.origin}/group/${groupId}`,
-            method: 'GET',
-            success: function(response){
-              console.log('第一个群的信息', response);
-              const members = response.data.members;
-              self.setData({userInfo: userInfo, groupId: groupId, members: members});
-              console.log('更新首页members后', self.data);
-            },
-            fail: function() {
-              // fail
-            },
-            complete: function() {
-              // complete
-            }
-          })
+          const groupId = groups[0] ? groups[0]._id : '';
+          self.setData({groupId});
+          if (groupId) {
+            wx.request({
+              url: `${config.origin}/group/${groupId}`,
+              method: 'GET',
+              success: function(response){
+                const members = response.data.members;
+                console.log('群组成员', members);
+                self.setData({members});
+              },
+              fail: function() {
+                // fail
+              },
+              complete: function() {
+                // complete
+              }
+            });
+          }   
         },
         fail: function() {
           // fail
@@ -66,8 +69,78 @@ const pageConfig = {
   onUnload:function(){
     // 页面关闭
   },
-  scroll: function () {
-
+  onPullDownRefresh: function () {
+    const self = this;
+    const start = Date.now();
+    const openid = this.data.userInfo.openid || wx.getStorageSync('openid');
+    const dataGroupId = this.data.groupId;
+    if (dataGroupId && dataGroupId !== 'id') {
+      wx.request({
+        url: `${config.origin}/group/list?openid=${openid}`,
+        method: 'GET',
+        success: function(res){
+          const groups = res.data;
+          const groupId = groups[0] ? groups[0]._id : '';
+          self.setData({groupId});
+          if (groupId) {
+            wx.request({
+              url: `${config.origin}/group/${groupId}`,
+              method: 'GET',
+              success: function(response){
+                const members = response.data.members;
+                const end = Date.now();
+                if (end - start > 1000) {
+                  self.setData({members});
+                  wx.stopPullDownRefresh();
+                } else {
+                  setTimeout(() => {
+                    self.setData({members});
+                    wx.stopPullDownRefresh();
+                  }, 1000 - (end - start));
+                }
+              },
+              fail: function() {
+                // fail
+              },
+              complete: function() {
+                // complete
+              }
+            });
+          }   
+        },
+        fail: function() {
+          // fail
+        },
+        complete: function() {
+          // complete
+        }
+      });
+    } else {
+      wx.request({
+        url: `${config.origin}/group/${dataGroupId}`,
+        method: 'GET',
+        success: function(response){
+          const members = response.data.members;
+          const end = Date.now();
+          if (end - start > 1000) {
+            self.setData({members});
+            wx.stopPullDownRefresh();
+          } else {
+            setTimeout(() => {
+              self.setData({members});
+              wx.stopPullDownRefresh();
+            }, 1000 - (end - start));
+          }
+        },
+        fail: function() {
+          // fail
+        },
+        complete: function() {
+          // complete
+        }
+      });
+    }
+    
   },
   onSendBean: function (e) {
     const data = e.currentTarget.dataset;
