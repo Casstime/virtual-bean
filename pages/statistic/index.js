@@ -4,6 +4,7 @@ const config = require('../../config');
 const pageConfig = {
   data: {
     pager: 1,
+    requested: false,
     records: [],
     windowHeight: 0,
     isRefreshing: true,
@@ -31,7 +32,7 @@ const pageConfig = {
             method: 'GET',
             success: function (res) {
               console.log('拉取送豆记录', res);
-              self.setData({pager: 1, records: res.data, hidden: true});
+              self.setData({pager: 1, records: res.data, requested: true, hidden: true});
             },
             fail: function () {
               // fail
@@ -54,7 +55,7 @@ const pageConfig = {
         method: 'GET',
         success: function (res) {
           console.log('拉取送豆记录', res);
-          self.setData({pager: 1, records: res.data, hidden: true});
+          self.setData({pager: 1, records: res.data, requested: true, hidden: true});
         },
         fail: function () {
           // fail
@@ -118,11 +119,11 @@ const pageConfig = {
         console.log('---refresh done-----');
         const end = Date.now();
         if (end - start > 1000) {
-          self.setData({pager: 1, records: res.data});
+          self.setData({pager: 1, records: res.data, requested: true});
           wx.stopPullDownRefresh();
         } else {
           setTimeout(() => {
-            self.setData({pager: 1, records: res.data});
+            self.setData({pager: 1, records: res.data, requested: true});
             wx.stopPullDownRefresh();
           }, 1000 - (end - start));
         }

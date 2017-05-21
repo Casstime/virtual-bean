@@ -1,4 +1,9 @@
 /* pages/logs/index.wxss */
+.tip {
+    padding-top: 30px;
+    text-align: center;
+    color: #666;
+}
 .item {
     padding-top: 15px;
 }

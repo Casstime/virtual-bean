@@ -1,11 +1,16 @@
 <!--pages/logs/index.wxml-->
 <view style="height: {{windowHeight}}px;overflow: scroll;">
-  <view class="item" wx:for="{{records}}" wx:for-item="record" wx:key="record._id">
-    <!--时间-->
-    <view class="time">{{record.formatCreatedAt}}</view>
-    <view class="reason-box">
-      <text>{{record.fromUser.nickname}}赠送给{{record.toUser.nickname}}{{record.beanCount}}颗豆子</text>
-      <text>[{{record.reason}}]</text>
+  <view class="tip" wx:if="{{requested && !records.length}}">
+    <text>暂无送豆记录</text>
+  </view>
+  <view wx:else>
+    <view class="item" wx:for="{{records}}" wx:for-item="record" wx:key="record._id">
+      <!--时间-->
+      <view class="time">{{record.formatCreatedAt}}</view>
+      <view class="reason-box">
+        <text>{{record.fromUser.nickname}}赠送给{{record.toUser.nickname}}{{record.beanCount}}颗豆子</text>
+        <text>[{{record.reason}}]</text>
+      </view>
     </view>
   </view>
 </view>
