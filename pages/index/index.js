@@ -158,6 +158,34 @@ const pageConfig = {
     wx.navigateTo({
       url: `../present/index?groupId=${groupId}&fromUserId=${fromUserId}&toUserId=${toUserId}&nickname=${nickname}`
     });
+  },
+  toCreateGroup: function () {
+    wx.navigateTo({
+      url: '../create_group/index',
+      success: function(res){
+        // success
+      },
+      fail: function() {
+        // fail
+      },
+      complete: function() {
+        // complete
+      }
+    });
+  },
+  toSearchGroup: function () {
+    wx.navigateTo({
+      url: '../search_group/index',
+      success: function(res){
+        // success
+      },
+      fail: function() {
+        // fail
+      },
+      complete: function() {
+        // complete
+      }
+    })
   }
 };
 

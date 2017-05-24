@@ -2,8 +2,11 @@
 <view>
   <view class="tip" wx:if="{{!groupId}}">
     <text>您还没加入任何群组</text>
+    <view class="group-tip">
+      先去<text class="link" bindtap="toCreateGroup">创建群</text>或<text class="link" bindtap="toSearchGroup">加入群</text>吧
+    </view>
   </view>
-  <view style="height: {{windowHeight}}px;overflow: scroll;" bindscrolltoupper="upper">
+  <view style="height: {{windowHeight}}px;overflow: scroll;">
     <view class="item" wx:for="{{members}}" wx:for-item="item" wx:key="item._id">
       <view class="name">{{item.nickname}}</view>
       <button type="primary" size="mini" wx:if="{{userInfo.userId !== item.userId}}" data-id="{{item._id}}" data-nickname="{{item.nickname}}" bindtap="onSendBean">送豆</button>
